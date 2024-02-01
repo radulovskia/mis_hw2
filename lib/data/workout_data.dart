@@ -6,15 +6,22 @@ import '../models/workout.dart';
 class WorkoutData extends ChangeNotifier {
   List<Workout> workoutList = [
     // some default workout
-    Workout(name: "Full Body", exercises: [
+    Workout(name: "Upper Body", exercises: [
       Exercise(name: "Bench Press", weight: "80", reps: "10", sets: "3"),
       Exercise(name: "Barbell Rows", weight: "70", reps: "10", sets: "3"),
       Exercise(name: "Wide Pulldowns", weight: "60", reps: "8", sets: "3"),
       Exercise(name: "Overhead Press", weight: "50", reps: "8", sets: "3"),
-      Exercise(name: "Leg Press", weight: "120", reps: "10", sets: "4"),
       Exercise(name: "Bicep Curls", weight: "40", reps: "12", sets: "3"),
       Exercise(name: "Lateral Raises", weight: "15", reps: "15", sets: "3"),
-    ])
+    ]),
+    Workout(name: "Lower Body", exercises: [
+      Exercise(name: "Squats", weight: "80", reps: "8", sets: "4"),
+      Exercise(name: "Deadlifts", weight: "100", reps: "6", sets: "4"),
+      Exercise(name: "Leg Press", weight: "120", reps: "10", sets: "4"),
+      Exercise(name: "Lunges", weight: "40", reps: "10", sets: "3"),
+      Exercise(name: "Hamstring Curls", weight: "80", reps: "12", sets: "3"),
+      Exercise(name: "Calf Raises", weight: "60", reps: "15", sets: "4"),
+    ]),
   ];
   Workout findWorkoutByName(String name){
     return workoutList.firstWhere((w) => w.name == name);
