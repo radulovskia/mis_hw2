@@ -22,27 +22,23 @@ class HiveDatabase {
     return _myBox.get("START_DATE");
   }
 
-  bool exerciseCompleted(List<Workout> workouts) {
+  int exerciseCompleted(List<Workout> workouts) {
+    int count = 0;
     for (var w in workouts) {
       for (var e in w.exercises) {
         if (e.isCompleted) {
-          return true;
+          count += 1;
         }
       }
     }
-    return false;
+    return count;
   }
 
   void saveToDatabase(List<Workout> workouts) {
     final workoutList = convertObjectToWorkoutList(workouts);
     final exerciseList = convertObjectToExerciseList(workouts);
 
-    if (exerciseCompleted(workouts)) {
-      // 1 means completed, 0 means not completed
-      _myBox.put("COMPLETION_STATUS_${todaysDateYYYYMMDD()}", 1);
-    } else {
-      _myBox.put("COMPLETION_STATUS_${todaysDateYYYYMMDD()}", 0);
-    }
+    _myBox.put("COMPLETION_STATUS_${todaysDateYYYYMMDD()}", exerciseCompleted(workouts));
 
     _myBox.put("WORKOUTS", workoutList);
     _myBox.put("EXERCISES", exerciseList);
