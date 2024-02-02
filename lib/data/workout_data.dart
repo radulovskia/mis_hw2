@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hw2/data/hive_database.dart';
+import 'package:hw2/datetime/date_time.dart';
 import 'package:hw2/models/exercise.dart';
 
 import '../models/workout.dart';
@@ -43,6 +44,8 @@ class WorkoutData extends ChangeNotifier {
     } else {
       db.saveToDatabase(workoutList);
     }
+
+    loadHeatMap();
   }
 
   List<Workout> getWorkoutList() {
@@ -74,5 +77,33 @@ class WorkoutData extends ChangeNotifier {
     e.isCompleted = !e.isCompleted;
     notifyListeners();
     db.saveToDatabase(workoutList);
+    loadHeatMap();
+  }
+
+  String getStartDate() {
+    return db.getStartDate();
+  }
+
+  Map<DateTime, int> heatMapDataSet = {};
+
+  void loadHeatMap() {
+    DateTime startDate = createDateTimeObject(getStartDate());
+    int days = DateTime.now().difference(startDate).inDays;
+
+    for (int i = 0; i <= days; i++) {
+      String yyyymmdd =
+          convertDateTimeToYYYYMMDD(startDate.add(Duration(days: i)));
+
+      int completionStatus = db.getCompletedStatus(yyyymmdd);
+      int year = startDate.add(Duration(days: i)).year;
+      int month = startDate.add(Duration(days: i)).month;
+      int day = startDate.add(Duration(days: i)).day;
+
+      final percentPerDay = <DateTime, int>{
+        DateTime(year, month, day): completionStatus
+      };
+
+      heatMapDataSet.addEntries(percentPerDay.entries);
+    }
   }
 }
