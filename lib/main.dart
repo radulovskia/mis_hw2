@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'pages/camera_page.dart';
 import 'pages/home_page.dart';
 import 'pages/login_page.dart';
+import 'pages/location_page.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
           routes: {
             '/login': (context) => LoginPage(),
             '/camera': (context) => CameraPage(),
+            '/location': (context) => LocationPage(),
             '/': (context) => HomePage(),
           },
         ));

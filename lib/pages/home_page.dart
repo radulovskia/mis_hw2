@@ -103,7 +103,13 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {
                   Navigator.pushNamed(context, '/camera');
                 },
-                child: Text('Open Camera'))
+                child: Text('Open Camera')),
+            SizedBox(height: 16),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/location');
+                },
+                child: Text('Open Location'))
           ],
         ),
       ),
