@@ -10,6 +10,10 @@ Presents a list of workouts with associated exercises, providing a structured vi
 Maintains state locally using Hive database, ensuring efficient and reliable data storage.
 **Firebase Authentication:**
 Implements Firebase web service for Android phones, enabling secure and seamless anonymous authentication.
+**Location Services:**
+Implements a location tracking feature as well as option to open it on Google Maps web service.
+**Camera Service:**
+Utilizes the phone's camera to take pictures and save them to local storage.
 ###Design Patterns:
 Singleton Pattern:
 Implements the Singleton design pattern for the DateTimeService, ensuring a single point of access for date-related functionality.
