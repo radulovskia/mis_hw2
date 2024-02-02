@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart' as path;
+import 'package:path_provider/path_provider.dart';
 
 class CameraPage extends StatefulWidget {
   const CameraPage({super.key});
@@ -43,6 +47,28 @@ class _CameraPageState extends State<CameraPage> {
     super.dispose();
   }
 
+  void _takePicture() async {
+    try {
+      final XFile? file = await cameraController.takePicture();
+
+      if (file != null) {
+        // Get the directory for the gallery
+        final Directory? galleryDirectory = await getExternalStorageDirectory();
+
+        // Construct the new file path in the gallery directory
+        final String fileName = path.basename(file.path);
+        final String galleryPath = path.join(galleryDirectory!.path, fileName);
+
+        // Move the picture file to the gallery
+        await File(file.path).copy(galleryPath);
+
+        print("Picture saved to $galleryPath");
+      }
+    } catch (e) {
+      print("Error taking picture: $e");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     if (cameraController.value.isInitialized) {
@@ -62,11 +88,12 @@ class _CameraPageState extends State<CameraPage> {
                     Icons.flip_camera_ios_outlined, Alignment.bottomLeft)),
             GestureDetector(
                 onTap: () {
-                  cameraController.takePicture().then((XFile? file) {
-                    if (mounted && file != null) {
-                      print("Picture saved to ${file.path}");
-                    }
-                  });
+                  _takePicture();
+                  // cameraController.takePicture().then((XFile? file) {
+                  //   if (mounted && file != null) {
+                  //     print("Picture saved to ${file.path}");
+                  //   }
+                  // });
                 },
                 child:
                     button(Icons.camera_alt_outlined, Alignment.bottomCenter)),
