@@ -97,7 +97,13 @@ class _HomePageState extends State<HomePage> {
                       goToWorkoutPage(value.getWorkoutList()[index].name),
                 ),
               ),
-            )
+            ),
+            SizedBox(height: 16),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/camera');
+                },
+                child: Text('Open Camera'))
           ],
         ),
       ),

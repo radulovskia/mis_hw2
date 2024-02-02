@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:hw2/data/workout_data.dart';
 import 'package:provider/provider.dart';
+import 'pages/camera_page.dart';
 import 'pages/home_page.dart';
 import 'pages/login_page.dart';
 
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
           initialRoute: '/login',
           routes: {
             '/login': (context) => LoginPage(),
+            '/camera': (context) => CameraPage(),
             '/': (context) => HomePage(),
           },
         ));
