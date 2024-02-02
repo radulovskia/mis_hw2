@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "561137290713",
+    "project_id": "hw2-201518",
+    "storage_bucket": "hw2-201518.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:561137290713:android:6b22477961014601a7ddc8",
+        "android_client_info": {
+          "package_name": "com.example.hw2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsDv34AjUnZLGvn82yPk984q-jHi6TLb8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

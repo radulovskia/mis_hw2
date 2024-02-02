@@ -3,6 +3,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:hw2/data/workout_data.dart';
 import 'package:provider/provider.dart';
 import 'pages/home_page.dart';
+import 'pages/login_page.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -17,9 +18,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
         create: (context) => WorkoutData(),
-        child: const MaterialApp(
+        child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: HomePage(),
+          initialRoute: '/login',
+          routes: {
+            '/login': (context) => LoginPage(),
+            '/': (context) => HomePage(),
+          },
         ));
   }
 }
