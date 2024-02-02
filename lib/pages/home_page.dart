@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hw2/pages/workout_page.dart';
 import 'package:provider/provider.dart';
 
 import '../data/workout_data.dart';
@@ -36,6 +37,16 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  void goToWorkoutPage(String workoutName) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => WorkoutPage(
+            workoutName: workoutName,
+          ),
+        ));
+  }
+
   void save() {
     String newWorkoutName = newWorkoutNameController.text;
     Provider.of<WorkoutData>(context, listen: false).addWorkout(newWorkoutName);
@@ -65,6 +76,11 @@ class _HomePageState extends State<HomePage> {
           itemCount: value.getWorkoutList().length,
           itemBuilder: (context, index) => ListTile(
             title: Text(value.getWorkoutList()[index].name),
+            trailing: IconButton(
+              icon: Icon(Icons.arrow_forward),
+              onPressed: () =>
+                  goToWorkoutPage(value.getWorkoutList()[index].name),
+            ),
           ),
         ),
       ),
