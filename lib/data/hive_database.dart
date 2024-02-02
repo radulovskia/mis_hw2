@@ -5,7 +5,7 @@ import '../models/exercise.dart';
 import '../models/workout.dart';
 
 class HiveDatabase {
-  final _myBox = Hive.box("workout_database");
+  final _myBox = Hive.box("workout_db");
 
   bool previousDataExists() {
     if (_myBox.isEmpty) {

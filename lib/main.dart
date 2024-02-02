@@ -4,9 +4,9 @@ import 'package:hw2/data/workout_data.dart';
 import 'package:provider/provider.dart';
 import 'pages/home_page.dart';
 
-void main() async{
+void main() async {
   await Hive.initFlutter();
-  await Hive.openBox("workout_database");
+  await Hive.openBox("workout_db");
   runApp(const MyApp());
 }
 
@@ -16,11 +16,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => WorkoutData(),
-      child: const MaterialApp(
-            debugShowCheckedModeBanner: false,
-            home: HomePage(),
-      )
-    );
+        create: (context) => WorkoutData(),
+        child: const MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: HomePage(),
+        ));
   }
 }
