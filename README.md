@@ -20,6 +20,13 @@ Homework 2 for Mobile Information Systems is a fitness app designed to monitor a
 
   Implements Firebase web service for Android phones, enabling secure and seamless anonymous authentication.
 
+- **Camera Functionality and Storage:**
+
+  Incorporates a camera feature allowing users to capture images of their fitness activities. The images are directly saved to the local storage, providing a visual record of workouts.
+
+- **Location Services with Google Maps:**
+
+  Enables location tracking for users during their fitness sessions. The app can open Google Maps, allowing users to view their workout locations and explore nearby areas.
 --------
 ### Design Patterns:
 - **Singleton Pattern:**
