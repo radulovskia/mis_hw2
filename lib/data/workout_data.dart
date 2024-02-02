@@ -87,12 +87,13 @@ class WorkoutData extends ChangeNotifier {
   Map<DateTime, int> heatMapDataSet = {};
 
   void loadHeatMap() {
-    DateTime startDate = createDateTimeObject(getStartDate());
+    final dts = DateTimeService();
+    DateTime startDate = dts.createDateTimeObject(getStartDate());
     int days = DateTime.now().difference(startDate).inDays;
 
     for (int i = 0; i <= days; i++) {
       String yyyymmdd =
-          convertDateTimeToYYYYMMDD(startDate.add(Duration(days: i)));
+          dts.convertDateTimeToYYYYMMDD(startDate.add(Duration(days: i)));
 
       int completionStatus = db.getCompletedStatus(yyyymmdd);
       int year = startDate.add(Duration(days: i)).year;

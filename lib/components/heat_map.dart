@@ -11,10 +11,11 @@ class MyHeatMap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dts = DateTimeService();
     return Container(
       padding: EdgeInsets.all(25),
       child: HeatMap(
-        startDate: createDateTimeObject(startDateYYYYMMDD),
+        startDate: dts.createDateTimeObject(startDateYYYYMMDD),
         endDate: DateTime.now().add(const Duration(days: 0)),
         datasets: datasets,
         colorMode: ColorMode.color,

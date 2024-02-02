@@ -8,9 +8,10 @@ class HiveDatabase {
   final _myBox = Hive.box("workout_db");
 
   bool previousDataExists() {
+    final dts = DateTimeService();
     if (_myBox.isEmpty) {
       print("previous data does NOT exist");
-      _myBox.put("START_DATE", todaysDateYYYYMMDD());
+      _myBox.put("START_DATE", dts.todaysDateYYYYMMDD());
       return false;
     } else {
       print("previous data DOES exist");
@@ -37,8 +38,9 @@ class HiveDatabase {
   void saveToDatabase(List<Workout> workouts) {
     final workoutList = convertObjectToWorkoutList(workouts);
     final exerciseList = convertObjectToExerciseList(workouts);
+    final dts = DateTimeService();
 
-    _myBox.put("COMPLETION_STATUS_${todaysDateYYYYMMDD()}", exerciseCompleted(workouts));
+    _myBox.put("COMPLETION_STATUS_${dts.todaysDateYYYYMMDD()}", exerciseCompleted(workouts));
 
     _myBox.put("WORKOUTS", workoutList);
     _myBox.put("EXERCISES", exerciseList);
